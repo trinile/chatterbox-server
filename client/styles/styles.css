@@ -1,0 +1,157 @@
+body {
+    background: #eee;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#main, #chats {
+    width: 650px;
+    margin: auto;
+    text-align: left;
+    background: white;
+    padding: 50px 60px;
+}
+
+#main {
+    background-image: url('https://abs.twimg.com/a/1458003619/img/t1/lohp_streams_header_bg_v4.png');
+    background-size: 100%;
+    width: 100%;
+}
+
+#main h1 {
+    margin-top: 0;
+    font-size: 35px;
+    margin-bottom: 5px;
+    padding: 5px;
+    font-weight: 600;
+}
+
+#main h1 span {
+    font-style:italic;
+}
+
+#main ul {
+    padding-left: 20px;
+}
+
+#main .error {
+    border: 1px solid red;
+    background: #FDEFF0;
+    padding: 20px;
+}
+
+#main .success {
+    margin-top: 25px;
+}
+
+#main .success code {
+    font-size: 12px;
+    color: green;
+    line-height: 13px;
+}
+
+#container {
+    margin: 0 auto;
+    width: 550px;
+}
+
+form {
+    padding: 20px;
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+
+form input[type=text] {
+    width: 80%;
+    font-size: 12px;
+    padding: 5px;
+    float: left;
+}
+
+.title {
+    color: #fff;
+}
+
+.msg-box .username {
+    font-weight: 800;
+}
+
+.msg-box:hover {
+    background-color: #fafafa;
+}
+
+.friend {
+    color: #5ea;
+}
+
+.btn-submit {
+    background-color: rgba(0, 0, 0, 0);
+    text-decoration: none;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 300;
+    width: 100px;
+    float: right;
+    outline: none;
+}
+
+.btn-submit:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.btn-refresh {
+    float: left;
+}
+
+.text-input {
+    border: 0px;
+    border-radius: 5px;
+}
+
+.msg-box {
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 0 15px;
+    margin: 10px;
+}
+
+.drop-down {
+    width: 100px;
+    -webkit-appearance: none;
+    background: rgba(0, 0, 0, 0) url(../images/arrow.svg) no-repeat 90% center;
+    background-size: 15px;
+    border: 0 solid #fff;
+    padding: 5px 0 5px 5px;
+    color: #fff;
+}
+
+.drop-down:focus {
+    outline: none;
+}
+
+.like-btn {
+    float: right;
+    position: relative;
+    top: 10px;
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: none;
+    text-decoration: none;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.like-btn:focus {
+    outline: none;
+}
+
+.like-btn:hover, .liked-btn {
+    color: #29D9C2;
+    background-color: white;
+}
+
+.liked-btn {
+    border-color: #29D9C2;
+}

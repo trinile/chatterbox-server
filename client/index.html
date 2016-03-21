@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>chatterbox</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <!-- dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/underscore/underscore-min.js"></script>    
+    <!-- your scripts -->
+    <script src="env/config.js"></script>
+  </head>
+  <body>
+    <div id="main">
+      <div id="container">
+        <h1 class="title">chatterbox</h1>
+        <form>
+          <select id="roomSelect" class="drop-down">
+            <option value="all-rooms" class="room" id="all-rooms">all-rooms</option>
+            <option value="lobby" class="room" id="lobby">lobby</option>
+          </select>
+          <br>
+          <input type="text" name="add-room" placeholder="add room" class="text-input" />
+          <input type="submit" name="add-room-btn" value="add room" class="btn-submit"/>
+        </form>
+        <form id="send">
+          <input type="text" name="message-box" placeholder="enter message here" class="text-input" />
+          <input type="submit" class="submit btn-submit" name="submit" value="submit" />
+        </form>
+        <button class="clear-messages btn-submit btn-refresh">refresh page</button>
+      </div>
+    </div>
+    <div>
+      <h2 id="chat-room">all-rooms</h2>
+    </div>
+    <div id="chats">
+    </div>
+    <script src="scripts/app.js"></script>
+  </body>
+</html>
