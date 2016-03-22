@@ -28,7 +28,6 @@ app.init = () => {
 //Send posts to other users
 app.send = function(message) {
   console.log(message);
-  debugger;
   $.ajax({
     url: app.server + '/classes/messages',
     type: 'POST',

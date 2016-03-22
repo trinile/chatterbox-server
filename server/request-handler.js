@@ -13,8 +13,9 @@ this file and include it in basic-server.js so that it actually works.
 **************************************************************/
 var url = require('url');
 var fs = require('fs');
+var filed = require('filed');
 var exports = module.exports = {};
-var messages = { results: []};
+var messages = {results: [{text: 'Hellooo', username: 'me'}]};
 exports.requestHandler = function(request, response) {
   // Request and Response come from node's http module.
   //
@@ -25,15 +26,17 @@ exports.requestHandler = function(request, response) {
   // Documentation for both request and response can be found in the HTTP section at
   // http://nodejs.org/documentation/api/
   var path = url.parse(request.url).path;
-  // console.log(path);
+  var paths = ['scripts/app.js', 'styles/styles.css', 
+  'bower_components/jquery/dist/jquery.js',
+  'bower_components/underscore/underscore-min.js'];
+  console.log(path);
   console.log('Serving request type ' + request.method + ' for url ' + request.url);
-  if (path === '/classes/messages') {
+  if (path.indexOf('message') !== -1) {
     
     var statusCode = 200;
     var headers = defaultCorsHeaders;
     headers['Content-Type'] = 'application/json';
-    console.log(headers, 'HELLO!!!');
-    
+
     response.writeHead(statusCode, headers);
 
     if (request.method === 'POST') {
@@ -45,21 +48,26 @@ exports.requestHandler = function(request, response) {
       });
 
       request.on('end', function() {
-        messages.results.push(JSON.parse(body));
         console.log(body);
-        console.log(messages);
+        messages.results.push(JSON.parse(body));
+        // console.log(messages);
         // at this point, `body` has the entire request body stored in it as a string
       });
-      console.log(body);
       // response.writeHead(200, 'application/json');
       response.end('Post recieved!');
     } else if (request.method === 'GET') {
       response.end(JSON.stringify(messages));
     } else if (request.method === 'OPTIONS') {
-      response.write(statusCode, headers);
+      response.write('200', headers);
     }
   } else if (path === '/') {
-
+    var html = fs.readFileSync('client/index.html');
+    response.writeHead(200, headers);
+    response.write(html);
+  } else if (paths.indexOf(path) !== -1) {
+    debugger;
+    var directory = fs.readFileSync('client/' + path);
+    response.end(directory);
   } else {
     response.writeHead(404, headers);
     response.end('404, non-existant endpoint');
@@ -67,7 +75,7 @@ exports.requestHandler = function(request, response) {
 };
 var defaultCorsHeaders = {
   'access-control-allow-origin': '*',
-  'access-control-allow-methods': 'GET, POST, PUT, DELETE, OPTIONS',
+  'access-control-allow-methods': 'GET, POST, PUT, DELETE',
   'access-control-allow-headers': 'content-type, accept',
   'access-control-max-age': 10 // Seconds.
 };
