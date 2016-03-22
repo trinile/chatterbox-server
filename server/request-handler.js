@@ -12,6 +12,7 @@ this file and include it in basic-server.js so that it actually works.
 
 **************************************************************/
 var url = require('url');
+var fs = require('fs');
 var exports = module.exports = {};
 var messages = { results: []};
 exports.requestHandler = function(request, response) {
@@ -31,6 +32,7 @@ exports.requestHandler = function(request, response) {
     var statusCode = 200;
     var headers = defaultCorsHeaders;
     headers['Content-Type'] = 'application/json';
+    console.log(headers, 'HELLO!!!');
     
     response.writeHead(statusCode, headers);
 
@@ -53,8 +55,22 @@ exports.requestHandler = function(request, response) {
       response.end('Post recieved!');
     } else if (request.method === 'GET') {
       response.end(JSON.stringify(messages));
+    } else if (request.method === 'OPTIONS') {
+      response.write(statusCode, headers);
     }
+  } else if (path === '/') {
+
+  } else {
+    response.writeHead(404, headers);
+    response.end('404, non-existant endpoint');
   }
+};
+var defaultCorsHeaders = {
+  'access-control-allow-origin': '*',
+  'access-control-allow-methods': 'GET, POST, PUT, DELETE, OPTIONS',
+  'access-control-allow-headers': 'content-type, accept',
+  'access-control-max-age': 10 // Seconds.
+};
   // Do some basic logging.
   //
   // Adding more logging to your server can be an easy way to get passive
@@ -85,7 +101,6 @@ exports.requestHandler = function(request, response) {
   // node to actually send all the data over to the client.
   // response.end(JSON.stringify(messages));
 
-};
 
 // These headers will allow Cross-Origin Resource Sharing (CORS).
 // This code allows this server to talk to websites that
@@ -96,10 +111,4 @@ exports.requestHandler = function(request, response) {
 //
 // Another way to get around this restriction is to serve you chat
 // client from this domain by setting up static file serving.
-var defaultCorsHeaders = {
-  'access-control-allow-origin': '*',
-  'access-control-allow-methods': 'GET, POST, PUT, DELETE, OPTIONS',
-  'access-control-allow-headers': 'content-type, accept',
-  'access-control-max-age': 10 // Seconds.
-};
 
