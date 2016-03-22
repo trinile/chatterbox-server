@@ -1,16 +1,25 @@
+if (!/(&|\?)username=/.test(window.location.search)) {
+  var newSearch = window.location.search;
+  if (newSearch !== '' & newSearch !== '?') {
+    newSearch += '&';
+  }
+  newSearch += 'username=' + (prompt('What is your name?') || 'anonymous');
+  window.location.search = newSearch;
+}
+
 var app = {};
 
 app.init = () => {
   setInterval(function() {
     $.ajax({
-      url: app.server,
+      url: app.server + '/classes/messages',
       type: 'GET',
       dataType: 'json',
       success: app.fetch
     });
-  }, 5000);
+  }, 20000);
 
-  app.server = 'http://127.0.0.1:3000/classes/messages';
+  app.server = 'http://127.0.0.1:3000';
   app.username = window.location.search.split('username=')[1];
   app.friends = [];
   app.likes = [];
@@ -20,11 +29,12 @@ app.init = () => {
 app.send = function(message) {
   console.log(message);
   $.ajax({
-    url: app.server,
+    url: app.server + '/classes/messages',
     type: 'POST',
     data: JSON.stringify(message),
     contentType: 'application/json',
     success: function(response) {
+      console.log('server response: ', response);
       console.log('Successful Post');
     },
     error: function(data) {
@@ -38,7 +48,7 @@ app.send = function(message) {
 //Get posts from other users
 app.fetch = function() {
   $.ajax({
-    url: app.server,
+    url: app.server + '/classes/messages',
     type: 'GET',
     data: {
       format: 'json'
