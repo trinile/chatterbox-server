@@ -24,9 +24,9 @@ exports.requestHandler = function(request, response) {
   // Documentation for both request and response can be found in the HTTP section at
   // http://nodejs.org/documentation/api/
   var path = url.parse(request.url).path;
-  console.log(path);
+  // console.log(path);
+  console.log('Serving request type ' + request.method + ' for url ' + request.url);
   if (path === '/classes/messages') {
-    console.log('Serving request type ' + request.method + ' for url ' + request.url);
     
     var statusCode = 200;
     var headers = defaultCorsHeaders;

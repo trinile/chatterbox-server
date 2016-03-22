@@ -17,7 +17,7 @@ app.init = () => {
       dataType: 'json',
       success: app.fetch
     });
-  }, 20000);
+  }, 5000);
 
   app.server = 'http://127.0.0.1:3000';
   app.username = window.location.search.split('username=')[1];
@@ -28,6 +28,7 @@ app.init = () => {
 //Send posts to other users
 app.send = function(message) {
   console.log(message);
+  debugger;
   $.ajax({
     url: app.server + '/classes/messages',
     type: 'POST',
