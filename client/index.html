@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>chatterbox</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <!-- dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+    <!-- your scripts -->
+    <script src="env/config.js"></script>
+    <script src="scripts/app.js"></script>
+  </head>
+  <body>
+    <div id="main" class="container">
+      <h1 class="container-fluid">chatterbox</h1>
+
+    <div class="row">
+      <div class="col-md-4 user-input">
+      <select id="roomSelect">
+        <option class="newRoom" val="">Add a New Room here!</option>
+        <option selected>lobby</option>
+      </select>
+      <div id="form"> 
+        <form action="#">
+        <input type="text" id="input-value" placeholder="Write Message Here...">
+        <input type="submit" id="submit" value="Submit">
+        </form>
+      </div>
+      </div>
+      <div id="chats" class="col-md-6"></div>
+    
+    </div> <!-- row -->
+      <!-- Your HTML goes here! -->
+    </div>
+    <!-- append chatbox -->
+  </body>
+</html>
