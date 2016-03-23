@@ -113,7 +113,7 @@ app.addMessage = function (message, objId) {
   $date.text(message.date);
   $message.text(message.text);
   $msgBox.append($like).append($userName).append($date).append($message);
-  app.$chats.append($msgBox);
+  app.$chats.prepend($msgBox);
   // highlight all friends function
   app.showFriends(message.username, function() {
     $userName.addClass('friend');

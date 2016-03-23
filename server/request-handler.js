@@ -25,10 +25,13 @@ exports.requestHandler = function(request, response) {
   //
   // Documentation for both request and response can be found in the HTTP section at
   // http://nodejs.org/documentation/api/
-  var path = url.parse(request.url).path;
-  var paths = ['scripts/app.js', 'styles/styles.css', 
-  'bower_components/jquery/dist/jquery.js',
+  var path = url.parse(request.url).pathname;
+  var paths = ['scripts/app.js', 'client/styles/styles.css', 
+  'client/lib/jquery.js',
   'bower_components/underscore/underscore-min.js'];
+  var paths2 = ['app.js', 'styles.css', 
+  'jquery.js',
+  'underscore-min.js'];
   console.log(path);
   console.log('Serving request type ' + request.method + ' for url ' + request.url);
   if (path.indexOf('message') !== -1) {
@@ -59,15 +62,33 @@ exports.requestHandler = function(request, response) {
       response.end(JSON.stringify(messages));
     } else if (request.method === 'OPTIONS') {
       response.write('200', headers);
+      response.end(JSON.stringify(messages));
     }
   } else if (path === '/') {
-    var html = fs.readFileSync('client/index.html');
-    response.writeHead(200, headers);
-    response.write(html);
-  } else if (paths.indexOf(path) !== -1) {
-    debugger;
-    var directory = fs.readFileSync('client/' + path);
-    response.end(directory);
+    var html = fs.readFileSync(__dirname + '/../client/index.html');
+    response.writeHead(200, {'Content-Type': 'text/html'});
+    response.write(html, 'utf8');
+    response.end();
+  } else if (path.indexOf('styles.css') !== -1) {
+    var css = fs.readFileSync(__dirname + '/../client/styles/styles.css');
+    response.writeHead(200, {'Content-Type': 'text/css'});
+    response.write(css, 'utf8');
+    response.end();
+  } else if (path.indexOf('app.js') !== -1) {
+    var app = fs.readFileSync(__dirname + '/../client/scripts/app.js');
+    response.writeHead(200, {'Content-Type': 'text/javascript'});
+    response.write(app, 'utf8');
+    response.end();
+  } else if (path.indexOf('jquery.js') !== -1) {
+    var jq = fs.readFileSync(__dirname + '/../client/bower_components/jquery/dist/jquery.min.js');
+    response.writeHead(200, {'Content-Type': 'text/javascript'});
+    response.write(jq, 'utf8');
+    response.end();
+  } else if (path.indexOf('underscore.js') !== -1) {
+    var us = fs.readFileSync(__dirname + '/../client/bower_components/underscore/underscore-min.js');
+    response.writeHead(200, {'Content-Type': 'text/javascript'});
+    response.write(us, 'utf8');
+    response.end();
   } else {
     response.writeHead(404, headers);
     response.end('404, non-existant endpoint');
@@ -75,10 +96,17 @@ exports.requestHandler = function(request, response) {
 };
 var defaultCorsHeaders = {
   'access-control-allow-origin': '*',
-  'access-control-allow-methods': 'GET, POST, PUT, DELETE',
+  'access-control-allow-methods': 'GET, POST, PUT, DELETE, OPTIONS',
   'access-control-allow-headers': 'content-type, accept',
   'access-control-max-age': 10 // Seconds.
 };
+
+
+// else if (paths.indexOf(path) !== -1) {
+//     var directory = fs.readFileSync(__dirname + '/../' + path);
+//     response.writeHead(200, headers);
+//     response.write(directory);
+//   }
   // Do some basic logging.
   //
   // Adding more logging to your server can be an easy way to get passive

@@ -62,7 +62,7 @@ form {
 }
 
 form input[type=text] {
-    width: 80%;
+    width: 78%;
     font-size: 12px;
     padding: 5px;
     float: left;
@@ -92,6 +92,7 @@ form input[type=text] {
     color: #fff;
     font-weight: 300;
     width: 100px;
+    height: 25px;
     float: right;
     outline: none;
 }
