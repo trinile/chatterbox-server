@@ -1,21 +1,35 @@
 body {
     background: #eee;
     text-align: center;
+<<<<<<< HEAD
     font-family: 'Open Sans', sans-serif;
 }
 
 #main, #chats {
     width: 650px;
+=======
+    padding: 0 25px;
+    font-family: arial, sans-serif;
+}
+
+#main, #chats {
+    /*width: 500px;*/
+>>>>>>> 65fdd5f01f7d149028494be40e392b9e8c8ba570
     margin: auto;
     text-align: left;
     background: white;
     padding: 50px 60px;
+<<<<<<< HEAD
 }
 
 #main {
     background-image: url('https://abs.twimg.com/a/1458003619/img/t1/lohp_streams_header_bg_v4.png');
     background-size: 100%;
     width: 100%;
+=======
+    border: solid #ddd;
+    border-width: 0 1px 1px 1px;
+>>>>>>> 65fdd5f01f7d149028494be40e392b9e8c8ba570
 }
 
 #main h1 {
@@ -23,7 +37,10 @@ body {
     font-size: 35px;
     margin-bottom: 5px;
     padding: 5px;
+<<<<<<< HEAD
     font-weight: 600;
+=======
+>>>>>>> 65fdd5f01f7d149028494be40e392b9e8c8ba570
 }
 
 #main h1 span {
@@ -50,11 +67,14 @@ body {
     line-height: 13px;
 }
 
+<<<<<<< HEAD
 #container {
     margin: 0 auto;
     width: 550px;
 }
 
+=======
+>>>>>>> 65fdd5f01f7d149028494be40e392b9e8c8ba570
 form {
     padding: 20px;
     padding-left: 0;
@@ -62,6 +82,7 @@ form {
 }
 
 form input[type=text] {
+<<<<<<< HEAD
     width: 78%;
     font-size: 12px;
     padding: 5px;
@@ -155,4 +176,78 @@ form input[type=text] {
 
 .liked-btn {
     border-color: #29D9C2;
+=======
+    margin-right: 10px;
+    width: 70%;
+    font-size: 12px;
+    padding: 5px;
+}
+
+#chats {
+    min-height: 500px;
+    max-height: 500px;
+    overflow: scroll;
+}
+.chat {
+    padding: 5px;
+    margin-bottom: 5px;
+    background-color: #eee;
+    width: 400px;
+    height: auto;
+    position: relative;
+}
+
+.chat .username {
+    font-weight: 800;   
+}
+
+.text {
+    /*width: 400px;*/
+    word-wrap: break-word;
+    display: inline-block;
+    font-weight: 400;
+}
+.chat:hover {
+    background-color: #ddd;
+}
+
+.spinner {
+    float: right;
+    height: 46px;
+    margin-bottom: 5px;
+}
+
+.spinner img {
+    padding: 10px;
+}
+
+.friend {
+    font-weight: 800;
+    color: red;
+}
+
+.border {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+#chats {
+    background-color: #8A7E9C;
+    border-radius: 4px;
+}
+.border:even {
+    background-color: blue;
+}
+
+.user-input {
+    background-color: white;
+    border: 1px solid #8A7E9C;
+    border-radius: 4px;
+}
+
+h1 {
+    background-color: ;
+>>>>>>> 65fdd5f01f7d149028494be40e392b9e8c8ba570
 }

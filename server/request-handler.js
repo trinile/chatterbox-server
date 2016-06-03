@@ -11,11 +11,18 @@ this file and include it in basic-server.js so that it actually works.
 *Hint* Check out the node module documentation at http://nodejs.org/api/modules.html.
 
 **************************************************************/
+<<<<<<< HEAD
 var url = require('url');
 var fs = require('fs');
 var filed = require('filed');
 var exports = module.exports = {};
 var messages = {results: [{text: 'Hellooo', username: 'me'}]};
+=======
+var exports = module.exports = {};
+var url = require('url');
+
+var messages = {results: [] };
+>>>>>>> 65fdd5f01f7d149028494be40e392b9e8c8ba570
 exports.requestHandler = function(request, response) {
   // Request and Response come from node's http module.
   //
@@ -112,21 +119,66 @@ var defaultCorsHeaders = {
   // Adding more logging to your server can be an easy way to get passive
   // debugging help, but you should always be careful about leaving stray
   // console.logs in your code.
+<<<<<<< HEAD
   // The outgoing status.
   // var statusCode = 200;
 
   // See the note below about CORS headers.
   // var headers = defaultCorsHeaders;
+=======
+  var path = url.parse(request.url).pathname;
+  console.log('Serving request type ' + request.method + ' for url ' + request.url);
+  if (path === '/classes/messages') {
+
+    var statusCode = 200;
+    var headers = defaultCorsHeaders;
+    headers['Content-Type'] = 'application/json';
+
+    response.writeHead(statusCode, headers);
+    
+    if (request.method === 'POST') {
+      statusCode = 201;
+      response.writeHead(statusCode, headers);
+
+      var body = '';
+      request.on('data', function(chunk) {
+        body += body.concat(chunk);
+      });
+
+      request.on('end', function() {
+        messages.results.push(JSON.parse(body));
+        console.log(messages);
+        console.log(body);
+      });
+
+      response.end('Post request permitted');
+
+    } else if (request.method === 'GET') {
+
+      response.end(JSON.stringify(messages));
+      console.log('get request end');
+    }
+  }
+  // The outgoing status.
+
+  // See the note below about CORS headers.
+>>>>>>> 65fdd5f01f7d149028494be40e392b9e8c8ba570
 
   // Tell the client we are sending them plain text.
   //
   // You will need to change this if you are sending something
   // other than plain text, like JSON or HTML.
+<<<<<<< HEAD
   // headers['Content-Type'] = 'application/json';
 
   // .writeHead() writes to the request line and headers of the response,
   // which includes the status and all headers.
   // response.writeHead(statusCode, headers);
+=======
+
+  // .writeHead() writes to the request line and headers of the response,
+  // which includes the status and all headers.
+>>>>>>> 65fdd5f01f7d149028494be40e392b9e8c8ba570
 
   // Make sure to always call response.end() - Node may not send
   // anything back to the client until you do. The string you pass to
@@ -135,8 +187,13 @@ var defaultCorsHeaders = {
   //
   // Calling .end "flushes" the response's internal buffer, forcing
   // node to actually send all the data over to the client.
+<<<<<<< HEAD
   // response.end(JSON.stringify(messages));
 
+=======
+  // response.end('Hello, World!');
+};
+>>>>>>> 65fdd5f01f7d149028494be40e392b9e8c8ba570
 
 // These headers will allow Cross-Origin Resource Sharing (CORS).
 // This code allows this server to talk to websites that
@@ -147,4 +204,12 @@ var defaultCorsHeaders = {
 //
 // Another way to get around this restriction is to serve you chat
 // client from this domain by setting up static file serving.
+
+
+
+
+
+
+
+
 
